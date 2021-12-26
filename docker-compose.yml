@@ -1,0 +1,26 @@
+version: '3.8'
+
+services: 
+  main-api-v1:
+    build: 
+      context: ./
+      dockerfile: Services/API/CSNK.Service.API/Dockerfile
+    ports: 
+     - "5010:80"
+    networks:
+     - demo-network-v1 
+    environment:
+      ASPNETCORE_ENVIRONMENT: Staging    
+  main-mvc:
+    build: 
+      context: ./
+      dockerfile: Project/CSNK.Project.Portal/Dockerfile
+    ports: 
+     - "5011:80"
+    networks:
+     - demo-network-v1 
+    environment:
+      ASPNETCORE_ENVIRONMENT: Staging
+networks:
+  demo-network-v1:
+    driver: nat
